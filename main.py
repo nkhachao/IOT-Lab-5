@@ -31,11 +31,11 @@ def recv_message(client, userdata, received_data):
             message = jsonobj['params']['command']
             conversation.append(message)
 
-            if 'translate' in message:
+            if 'translate' in message.lower():
                 response = t5.reply("translate English to German: ", message.split(': ')[1])
-            elif 'summarize' in message:
+            elif 'summarize' in message.lower():
                 response = t5.reply("summarize: ", message.split(': ')[1])
-            elif 'acceptable' in message:
+            elif 'acceptable' in message.lower():
                 response = t5.reply("cola sentence: ", message.split(': ')[1])
             else:
                 response = chatbot.reply(message)

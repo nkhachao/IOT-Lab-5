@@ -13,4 +13,5 @@ def reply(task_prefix, sentence):
     return tokenizer.batch_decode(output_sequences, skip_special_tokens=True)[0]
 
 
-print(reply("translate English to German: ", "I like to work in NYC."))
+if __name__ == '__main__':
+    print(reply("translate English to German: ", "I like to work in NYC."))
