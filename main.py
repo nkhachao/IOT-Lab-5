@@ -40,7 +40,7 @@ def recv_message(client, userdata, received_data):
             else:
                 response = chatbot.reply(message)
 
-            conversation.append(response)
+            conversation.append('Bot: ' + response)
 
             data['data'][0]['stdout'] = response
 
