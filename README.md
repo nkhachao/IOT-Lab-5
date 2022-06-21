@@ -10,7 +10,7 @@ The server must be active before accessing the dashboard.
 
 ### Chit-chat
 
-The chatbot can engage in a multi-turn chit-chat conversation. This chatbot is based on Meta's BlenderBot, which is an open-domain chatbot, so you can chat about any topic.
+The chatbot can engage in multi-turn chit-chat conversations. This chatbot is based on Meta's BlenderBot, which is an open-domain chatbot, so you can chat about any topic.
 
 ### Translation
 
