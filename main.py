@@ -17,13 +17,13 @@ def subscribed(client, userdata, mid, granted_qos):
     print("Subscribed...")
 
 
-status = 'Waiting for input'
 data = {'ok': True, 'done': True, 'success': True, 'data': [{'stdout':''}]}
 
 
 def recv_message(client, userdata, received_data):
     global data
-    global status
+
+    publish_stats('Processing')
 
     status = 'Processing'
     print("Received: ", received_data.payload.decode("utf-8"))
@@ -49,7 +49,6 @@ def recv_message(client, userdata, received_data):
             data['data'][0]['stdout'] = 'Bot: ' + response
 
         client.publish('v1/devices/me/rpc/response/' + request_id, json.dumps(data), 1)
-        status = 'Waiting for input'
     except:
         pass
 
@@ -71,10 +70,12 @@ client.on_subscribe = subscribed
 client.on_message = recv_message
 
 
-while True:
+def publish_stats(status):
     current_time = datetime.now().strftime("%H:%M:%S")
-
     collected_data = {'Current time': current_time, 'a': 'z', 'Conversation length': len(conversation), 'Status': status}
-
     client.publish('v1/devices/me/telemetry', json.dumps(collected_data), 1)
+
+
+while True:
+    publish_stats('Waiting for input')
     time.sleep(4)
